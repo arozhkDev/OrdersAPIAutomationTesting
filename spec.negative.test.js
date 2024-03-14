@@ -1,5 +1,4 @@
-test('Test orders - Negative Scenarios', async () => {
-    // Test case: Simulate network error
+test('Simulate network error', async () => {
     let networkError = false;
     try {
       await fetch('http://localhost:5000/nonexistent-route', {
@@ -21,8 +20,9 @@ test('Test orders - Negative Scenarios', async () => {
       networkError = true;
     }
     expect(networkError).toBe(true);
+  });
   
-    // Test case: Simulate server error
+  test('Simulate server error', async () => {
     const responseServerError = await fetch('http://localhost:5000/server-error', {
       method: 'POST',
       body: JSON.stringify({
@@ -39,8 +39,9 @@ test('Test orders - Negative Scenarios', async () => {
       }
     });
     expect(responseServerError.status).not.toBe(200);
+  });
   
-    // Test case: Simulate incorrect request payload
+  test('Simulate incorrect request payload', async () => {
     const responseIncorrectPayload = await fetch('http://localhost:5000', {
       method: 'POST',
       body: JSON.stringify({
