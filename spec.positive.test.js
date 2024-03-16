@@ -64,4 +64,13 @@ test('Test orders - Positive Scenarios', async () => {
   expect(shipping).toHaveProperty('region_name', 'Область');
   expect(shipping).toHaveProperty('price', 'По тарифам перевізника');
   expect(shipping).toHaveProperty('tracking_number', null);
+
+  // Test stock
+  expect(shipping).toHaveProperty('stock');
+  const stock = order.shipping.stock;
+  expect(stock).toHaveProperty('name', 'Склад №1');
+  expect(stock).toHaveProperty('stock_number', 'NP1');
+
+  // Test records
+  expect(result).toHaveProperty('total_records', 1);
 });
